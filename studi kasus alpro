@@ -12,7 +12,7 @@ int main()
     string jenis_bensin;
 
     cout<<"===========================\n";
-    cout<<"Program SPBU\n";
+    cout<<"Program SPBU ALPRO\n";
     cout<<"===========================\n\n";
 
         cout<<"Jenis Bensin : ";
