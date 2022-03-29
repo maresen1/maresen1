@@ -1,71 +1,79 @@
 #include <iostream>
-#include <conio.h>
+#include <string>
+#include <iomanip>
 
 using namespace std;
-int main(){
-	
-	//array a dan b masing masing memesan memori sebanyak 20 alat
-	int i, j, A[20], B[20], banyakA, banyakB;
-	
-	cout <<"IRISAN &GABUNGAN 2 HIMPUNAN\n";
-	cout <<"============================\n\n";
-	
-	cout <<"Masukkan banyaknya anggota himpunan A : ";
-	cin >> banyakA;
-	
-	//isi anggota A di tampung dalam array a
-	
-	for(i=0;i<banyakA;i++){
-		cout<<"Masukkan anggota " << i+1 << " : "; 
-		cin>>A[i];
-}
-		cout<<"\nMasukkan banyaknya anggota himpunan B : ";
-		cin>>banyakB;
-		
-	//isi anggota B di tampung dalam array b
-	for(i=0;i<banyakB;i++){
-		cout<<"Masukkan anggota " << i+1 << " : ";
-		cin>>B[i];
-}
-	
-	//menampilkan isi dari array a
-	cout <<"\nHimpunan A={ ";
-	for(i=0; i<banyakA; i++){
-		cout << A[i] << " ";
+
+int main()
+{
+    // inisialisasi variable terlebih dahulu.
+    int jumlah_beli, bayar, jarak, diskon, jumlah[100], harga[100],total[50];
+    float total_semua, ongkir;
+    string nama_makanan[100];
+
+    cout<<"===========================\n";
+    cout<<"Program Studi Kasus II\n";
+    cout<<"===========================\n\n";
+
+    cout<<"Masukan Jumlah Beli :";
+    cin>> jumlah_beli; //pembeli dan jumlah makanan yang di beli.
+
+    for (int i=0;i<jumlah_beli;i++){
+        cout<<"\nMasukan Makanan ke- "<<i+1<<"\n\n";
+        cout<<"Nama Makanan : ";
+        cin>>nama_makanan[i]; //input nama makanan yang dibeli
+
+        cout<<"Jumlah Makanan : ";
+        cin>>jumlah[i]; //input jumlah makanan yang di beli
+
+        cout<<"Harga Makanan : ";
+        cin>>harga[i]; //input harga makanan
+
+        total[i] = jumlah[i]*harga[i]; //jumlah harga total makanan
+        total_semua += total[i]; // menjumlahkan seluruh total makanan
+
+    }
+    cout<<"Jarak tempat pembelian (dalam KM) : "<<endl;
+    cin>>jarak;
+    if(jarak <= 3){
+    	ongkir = 15000;
 	}
-	cout <<"}";
-	
-	//menapilkan isi dari array b
-	cout <<"\nHimpunanB={ ";
-	for(j=0; j<banyakB; j++){
-		cout <<B[j] <<" ";
+	else if(jarak >= 3){
+		ongkir = 25000;
 	}
-	cout <<"}";
-	
-	cout <<"\n\n----------------------------- \n";
-	cout <<"A irisan B = {";
-	for(i=0; i<banyakA; i++){
-		for(j=0; j<banyakB; j++){
-			
-			//a irisan b berisi anggota dari himpunan a dan b yang sama
-			//jika isi dari array a = isi array b, maka tampilkan isi array a
-			if(A[i] == B[j])
-			 cout << A[i] <<" ";
-		}
-	}
-	cout <<"}";
-	
-	cout <<"\n\nA gabungan B= { ";
-	for(i=0; i<banyakA; i++){
-		cout <<A[i] <<" ";
+	else{
 	}
 	
-	for(j=0; j<banyakB; j++){
-		cout <<B[j] <<" ";
-	} 
-	cout <<"}";
-	
-	cout <<"\n\nTekan sembarang untuk keluar ...";
-	getch();
-	return 0;
+    cout<<"\n===============";
+    cout<<"\nTotal Pembelian";
+    cout<<"\n===============";
+
+    cout<<"\nNo Makanan  Jumlah Harga Total\n";
+    for (int i=0; i<jumlah_beli; i++ ){
+        cout<<i+1<<setw(8)<<nama_makanan[i]<<setw(10)<<jumlah[i]<<setw(12)<<harga[i]<<setw(12)<<total[i]<<endl;
+    }
+
+    //percabangan kondisi diskon
+    if(total_semua>=150000){
+        diskon= -(-8000) + 0.35*total_semua;
+    }
+	else if(total_semua>= 50000 && total_semua<= 150000){
+        diskon= -(-5000) + 0.15*total_semua;
+    }
+	else if(total_semua>= 25000 && total_semua<= 50000){
+        diskon= -(-3000);
+    }
+	else{
+        diskon=0;
+    }
+
+    cout<<"Jumlah Bayar : Rp."<<total_semua<<endl;
+    cout<<"Diskon : Rp."<<diskon<<endl;
+    cout<<"Jarak Tempat pembelian : "<< jarak << " KM"<<endl;
+    cout<<"Ongkir : Rp."<<ongkir<<endl;
+    cout<<"Total Bayar : Rp."<<total_semua - diskon + ongkir<<endl;
+    cout<<"Bayar : Rp.";
+    cin>>bayar;
+    cout<<"Kembalian : Rp."<<(bayar-(total_semua-diskon))<<endl;
+    return 0;
 }
